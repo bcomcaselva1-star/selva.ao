@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html><head><title>Selva.ai</title>
+<style>body{font-family:Arial;background:#111;color:#fff;text-align:center;padding:40px}input{width:60%;padding:15px;border-radius:10px;border:none}button{padding:15px 25px;background:#8b5cf6;color:#fff;border:none;border-radius:10px;margin-left:10px;cursor:pointer}#ans{margin-top:30px;background:#222;padding:20px;border-radius:10px;text-align:left;min-height:100px}</style>
+</head><body>
+<h1>🌟 Selva.ai - Claude Fable 5.1</h1><p>No Gemini - Peaceful Mode</p>
+<input id="q" placeholder="Ask anything...">
+<button onclick="ask()">Ask</button>
+<div id="ans">Answer will come here...</div>
+<script>
+async function ask(){
+ let m=document.getElementById('q').value;
+ document.getElementById('ans').innerHTML='Thinking...';
+ let r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:m})});
+ let d=await r.json();
+ document.getElementById('ans').innerHTML=d.answer||d.error;
+}
+</script>
+</body></html>
